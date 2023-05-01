@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{post.title}}</h1>
+카테고리 : {{post.category}}
+<br>
+작성자 : {{post.writer}}
+<br>
+날짜 : {{post.pub_date}}
+<br>
+조회수 : {{post.view_count}}
+<hr>
+<p>{{post.body}}</p>
+{% endblock %}

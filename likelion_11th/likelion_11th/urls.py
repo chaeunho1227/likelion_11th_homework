@@ -23,4 +23,7 @@ urlpatterns = [
     path('', views.mainpage, name="mainpage"),
     path('second/', views.secondpage, name="secondpage"),
     path('chaeunho/', views.chaeunho, name="chaeunhopage"),
+    path('new_post/', views.new_post, name="new_post"),
+    path('create/', views.create, name="create"),
+    path('<int:id>', views.detail, name="detail"),
 ]
