@@ -59,6 +59,7 @@ def update(request, id):
         if len(update_Post.image) > 0:
             os.remove(update_Post.image.path)
         update_Post.image = request.FILES['image']
+    update_Post.body = request.POST['body']
     update_Post.pub_date = timezone.now()
     update_Post.save()
     return redirect('main:detail', update_Post.id)
