@@ -55,15 +55,11 @@ def update(request, id):
     update_Post.title = request.POST['title']
     update_Post.writer = request.POST['writer']
     update_Post.category = request.POST['category']
-    update_Post.pub_date = timezone.now()
-    # 이미지 수정
     if len(request.FILES) != 0:
-        # 기존 이미지가 있다면 삭제
         if len(update_Post.image) > 0:
             os.remove(update_Post.image.path)
         update_Post.image = request.FILES['image']
-    update_Post.body = request.POST['body']
-    update_Post.view_count = 0
+    update_Post.pub_date = timezone.now()
     update_Post.save()
     return redirect('main:detail', update_Post.id)
 
