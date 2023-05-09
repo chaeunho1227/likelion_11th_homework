@@ -9,6 +9,7 @@ class Post(models.Model):
     category = models.CharField(max_length=50, default='')
     pub_date = models.DateTimeField()
     body = models.TextField()
+    image = models.ImageField(upload_to="post/", blank=True, null=True)
     view_count = models.IntegerField(default=0)
 
     def __str__(self):

@@ -12,5 +12,10 @@
 <br>
 조회수 : {{post.view_count}}
 <hr>
+{% if post.image %}
+<p><img src="{{post.image.url}}" alt="사진" width="400px" height="400px"></p>
+{% endif %}
 <p>{{post.body}}</p>
+<a href="{% url 'main:edit' post.id %}">수정하기</a>
+<a href="{% url 'main:delete' post.id %}">삭제하기</a>
 {% endblock %}
