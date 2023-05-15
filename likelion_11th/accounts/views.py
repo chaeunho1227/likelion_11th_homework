@@ -33,12 +33,18 @@ def signup(request):
         if request.POST['password'] == request.POST['confirm']:
             user = User.objects.create_user(
                 username=request.POST['username'],
-                password=request.POST['password']
-            )
+                password=request.POST['password'],
+                email=request.POST['email']
+            )   
             nickname = request.POST['nickname']
             department = request.POST['department']
+            date_of_birth = request.POST['date_of_birth']
 
-            profile = Profile(user=user,nickname=nickname, department=department)
+            # 생일 입력이 없어 오류가 발생할때
+            if not date_of_birth:
+                date_of_birth = None
+
+            profile = Profile(user=user,nickname=nickname, department=department, date_of_birth=date_of_birth)
             profile.save()
             
             auth.login(request,user)

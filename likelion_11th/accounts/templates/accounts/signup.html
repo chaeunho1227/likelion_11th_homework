@@ -4,17 +4,22 @@
 
 <form method="POST" action="{% url 'accounts:signup' %}">
     {% csrf_token %}
-    <p>username</p>
-    <input type="text" name="username">
+    <p>username*</p>
+    <input type="text" name="username" required>
     <br>
 
-    <p>password</p>
-    <input type="password" name="password">
+    <p>password*</p>
+    <input type="password" name="password" required>
     <br>
 
 
-    <p>password confirm</p>
-    <input type="password" name="confirm">
+    <p>password confirm*</p>
+    <input type="password" name="confirm" required>
+    <br>
+
+
+    <p>email</p>
+    <input type="email" name="email">
     <br>
 
     <p>nickname</p>
@@ -24,6 +29,11 @@
     <p>department</p>
     <input type="text" name="department">
     <br>
+
+    <p>date of birth</p>
+    <input type="date" name="date_of_birth">
+    <br>
+
 
     <input type="submit" value="회원가입">
 </form>

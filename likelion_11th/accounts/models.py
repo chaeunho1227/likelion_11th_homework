@@ -6,3 +6,5 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.TextField(max_length=10)
     department = models.TextField(null=True,max_length=30)
+    date_of_birth = models.DateField(null=True,blank=True)
+    is_activate = models.BooleanField(default=True)
