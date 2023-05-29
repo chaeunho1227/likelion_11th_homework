@@ -9,7 +9,7 @@ import os
 
 def detail(request, id):
     post = get_object_or_404(Post, pk=id)
-    # 쿠키를 이용해서 중복적용을 없앨 수 있음.
+    # 쿠키를 이용해서 중복적용을 없앨 수 있음. 아직 구현 안되었음.
     post.view_count += 1
     post.save()
     if request.method == 'GET':
@@ -83,7 +83,7 @@ def update(request, id):
             update_Post.body = request.POST['body']
             update_Post.pub_date = timezone.now()
             update_Post.save()
-            return redirect('m ain:detail', update_Post.id)
+            return redirect('main:detail', update_Post.id)
     return redirect('accounts:login')
 
 
@@ -97,4 +97,4 @@ def delete(request, id):
 def delete_comment(request, id):
     delete_comment = Comment.objects.get(id=id)
     delete_comment.delete()
-    return redirect('main:detail',id)
+    return redirect('main:detail',delete_comment.post.id)
