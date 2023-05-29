@@ -4,7 +4,9 @@
 <h1>Main page</h1>
 <img src="{% static 'images/logo.png' %}" style="width: 500px;">
 <br>
+{% if user.is_authenticated %}
 <a href="{% url 'main:new_post' %}">게시글 작성</a>
+{% endif %}
 
 <h1>게시글 목록</h1>
 <div>

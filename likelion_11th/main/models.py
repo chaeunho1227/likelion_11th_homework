@@ -1,11 +1,10 @@
 from django.db import models
-
-# Create your models here.
+from django.contrib.auth.models import User
 
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    writer = models.CharField(max_length=100)
+    writer = models.ForeignKey(User, null=False,blank=False, on_delete=models.CASCADE)
     category = models.CharField(max_length=50, default='')
     pub_date = models.DateTimeField()
     body = models.TextField()
@@ -17,3 +16,13 @@ class Post(models.Model):
 
     def summary(self):
         return self.body[:20]
+    
+
+class Comment(models.Model):
+    content = models.TextField()
+    pub_date = models.DateTimeField()
+    writer = models.ForeignKey(User,null=False,blank=False,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, null=False,blank=False,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.post.title+" : "+self.content[:20]

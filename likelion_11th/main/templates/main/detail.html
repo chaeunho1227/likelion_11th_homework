@@ -16,6 +16,28 @@
 <p><img src="{{post.image.url}}" alt="사진" width="400px" height="400px"></p>
 {% endif %}
 <p>{{post.body}}</p>
+{% if post.writer == user %}
 <a href="{% url 'main:edit' post.id %}">수정하기</a>
 <a href="{% url 'main:delete' post.id %}">삭제하기</a>
+{% endif %}
+<div class="comment_container">
+    <div>
+        <h2>댓글 작성하기</h2>
+        <form action="{% url 'main:detail' post.id %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="content">
+            <input type="submit" name="submit">
+        </form>
+    </div>
+    <div>
+        {% for c in comments %}
+        <hr>
+        <h4>작성자 : {{c.writer}}</h4>
+        {% if c.writer == user %}
+        {% endif %}
+        <p>내용 : {{c.content}}</p>
+        <p>{{c.pub_date}} - <a href="{% url 'main:delete_comment' c.id %}">지우기</a></p>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
