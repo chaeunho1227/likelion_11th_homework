@@ -33,10 +33,12 @@
         {% for c in comments %}
         <hr>
         <h4>작성자 : {{c.writer}}</h4>
-        {% if c.writer == user %}
-        {% endif %}
         <p>내용 : {{c.content}}</p>
-        <p>{{c.pub_date}} - <a href="{% url 'main:delete_comment' c.id %}">지우기</a></p>
+        <p>{{c.pub_date}}
+            {% if c.writer == user %}
+            | <a href="{% url 'main:delete_comment' c.id %}">지우기</a>
+            {% endif %}
+        </p>
         {% endfor %}
     </div>
 </div>
