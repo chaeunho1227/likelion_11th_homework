@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Profile
@@ -51,3 +51,4 @@ def signup(request):
             return redirect('/')
 
     return render(request, 'accounts/signup.html')
+

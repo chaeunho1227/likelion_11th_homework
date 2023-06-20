@@ -10,6 +10,7 @@ urlpatterns = [
     path('create/', create, name="create"),
     path('<int:id>', detail, name="detail"),
     path('edit/<int:id>', edit, name="edit"),
+    path('likes/<int:post_id>', likes, name="likes"),
     path('update/<int:id>', update, name="update"),
     path('delete/<int:id>', delete, name="delete"),
     path('delete_comment/<int:id>',delete_comment,name="delete_comment"),

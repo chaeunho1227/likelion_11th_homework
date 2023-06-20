@@ -2,14 +2,34 @@
 {% load static %}
 {% block content %}
 
-<h1>Profile</h1>
 
-<h3>{{ user.profile.department }} {{ user.profile.nickname }}님 안녕하세요</h3>
+
+<h3>{{ target_user.profile.department }} {{ target_user.profile.nickname }}님의 Profile</h3>
+<p>이메일 : {{ target_user.email }}</p>
 <hr>
-<p>이메일 : {{ user.email }}</p>
+{% if request.user != target_user %}
+{% if request.user.profile in target_user.profile.followers.all %}
+<a href="{% url 'users:follow' target_user.id %}"><button type="button" class="btn btn-outline-info">언팔로우</button></a>
+{% else %}
+<a href="{% url 'users:follow' target_user.id %}"><button type="button" class="btn btn-info">팔로우</button></a>
+{% endif %}
+{% endif %}
 
-{% if user.profile.date_of_birth %}
-<p>생일 : {{ user.profile.date_of_birth }}</p>
+
+<p>팔로워<br>{{target_user.profile.followers.count}}</p>
+{% for f in target_user.profile.followers.all %}
+<a href="{% url 'users:mypage' f.user.id %}">{{f.user.username}}</a>
+{% endfor %}
+
+<p>팔로잉<br>{{target_user.profile.followings.count}}</p>
+{% for f in target_user.profile.followings.all %}
+<a href="{% url 'users:mypage' f.user.id %}">{{f.user.username}}</a>
+{% endfor %}
+
+
+
+{% if target_user.profile.date_of_birth %}
+<p>생일 : {{ target_user.profile.date_of_birth }}</p>
 {% endif %}
 
 {% endblock %}

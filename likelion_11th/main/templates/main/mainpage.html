@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <h1>Main page</h1>
-<img src="{% static 'images/logo.png' %}" style="width: 500px;">
+<img src="{% static 'images/LL_logo.png' %}" style="width: 500px;">
 <br>
 {% if user.is_authenticated %}
 <a href="{% url 'main:new_post' %}">게시글 작성</a>
@@ -20,7 +20,7 @@
         <br>
         <div class=”item”>
             {% if post.image %}
-            <p><img src="{{post.image.url}}" alt="사진" width="100px" height="100px"></p>
+            <p><img src="{{ post.image.url }}" alt="사진" width="100px" height="100px"></p>
             {% endif %}
         </div>
         {{post.summary}}
